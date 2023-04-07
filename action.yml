@@ -1,5 +1,5 @@
 # action.yml
-name: 'Michals Deployer'
+name: 'ssh and run your script on remote host'
 description: 'Build pull & deploy'
 author: 'michal@michalspace.com'
 inputs:
