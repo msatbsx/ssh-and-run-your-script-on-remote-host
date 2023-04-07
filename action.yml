@@ -1,0 +1,34 @@
+# action.yml
+name: 'Michals Deployer'
+description: 'Build pull & deploy'
+author: 'michal@michalspace.com'
+inputs:
+  command:
+    description: "Command to execute on the remote server."
+    required: true
+  host:
+    description: "Hostname or IP address of the server."
+    required: true
+  key:
+    description: "File Location or string that contains a private key for authentication."
+    required: true
+  user:
+    description: "Username for authentication."
+    required: false
+    default: "ubuntu"
+  port:
+    description: "SSH port number of the server."
+    required: false
+    default: "22"
+  args:
+    description: "SSH parameters."
+    required: false
+outputs:
+  time: # id of output
+    description: 'The time we did the job'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'star'
+  color: 'green'
