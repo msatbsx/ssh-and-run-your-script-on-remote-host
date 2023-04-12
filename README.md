@@ -27,17 +27,27 @@ The time the job was done. Or demo how to add more stuff ;)
 - script may have many lines, (careful with indentation, it is YAML)
 
 ```yml
-- name: SSH Deployer
-  uses: msatbsx/deployer@v0.1.4 # replace with current tag, avoid using main or latest
-  id: runner # important, used below in steps.runner... 
-  with:
-    host: ${{ secrets.HOST }}
-    user: michal
-    key: ${{ secrets.KEY}}
-    command: |
-      ls -lFa
-- name: Get the outputs
-      run: echo "The time was ${{ steps.runner.outputs.time }}" 
+name: simple deployer
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  remote_command_job:
+    runs-on: ubuntu-latest
+    name: SSH Remote command
+    steps:
+      - name: SSH Deployer
+        uses: msatbsx/ssh-and-run-your-script-on-remote-host@v0.1.1 # replace with current tag, avoid using main or latest
+        id: runner # important, used below in steps.runner... 
+        with:
+          host: ${{ secrets.HOST }}
+          user: michal
+          key: ${{ secrets.KEY }}
+          command: |
+            ls -lFa
+      - name: Get the outputs
+        run: echo "The time was ${{ steps.runner.outputs.time }}"
 ```
 
 ## Contribution
